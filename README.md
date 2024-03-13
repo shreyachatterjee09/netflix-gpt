@@ -35,6 +35,9 @@
  -TMDB Image CDN URL
  Made the Browse Page with tailwind
  -usePopularMovies and useUpcoming Movies custom hooks
+ -GPT Search Page
+ -GPT Search Bar
+ -(Feature)Multi-Language Feature in App
 
  # Features
  -Login/Sign Up
