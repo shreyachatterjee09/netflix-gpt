@@ -3,12 +3,12 @@ export const LOGO_URL="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-8
 export const USE_AVATAR="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe8eIW8UaYc7fD5QyVa_Z39U07KJzGel20cRbqsURLvQ&s"
 
 export const API_OPTIONS = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMTEwZDM5ZDUxYWFjZWNlYTk4MTdhN2RiMTY0YWM4OCIsInN1YiI6IjY1ZWYzOWE3ZTI1ODYwMDE2MjRjZjBmNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.05UKseX3RPn8L-kjhRi6r6vJlGs8DL3Gw98UZEtpC9I'
-    }
-  };
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization: "Bearer " + process.env.REACT_APP_TMDB_KEY,
+  },
+};
 
   export const IMG_CDN_URL = "https://image.tmdb.org/t/p/w500/"
 
@@ -19,3 +19,6 @@ export const API_OPTIONS = {
     { identifier: "hindi", name: "Hindi" },
     { identifier: "spanish", name: "Spanish" },
   ];
+
+  export const OPENAI_KEY=process.env.REACT_APP_OPENAI_KEY;
+  

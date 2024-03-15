@@ -1,6 +1,6 @@
 import React from 'react';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { LOGO_URL, SUPPORTED_LANGUAGES } from '../utils/constants';
@@ -14,6 +14,7 @@ const Header = () => {
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
   const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
+  const [headerBackground, setHeaderBackground] = useState('transparent');
 
   const handleSignOut = () => {
     signOut(auth)
@@ -55,8 +56,27 @@ const Header = () => {
     dispatch(changeLanguage(e.target.value));
   };
 
+  useEffect(() => {
+    const changeHeaderBackground = () => {
+      if (window.scrollY > 0) {
+        setHeaderBackground('#000000'); // Change to dark color when scrolled down
+      } else {
+        setHeaderBackground('transparent'); // Change to transparent when at the top
+      }
+    };
+
+    window.addEventListener('scroll', changeHeaderBackground);
+
+    return () => {
+      window.removeEventListener('scroll', changeHeaderBackground);
+    };
+  }, []);
+
+
   return (
-    <div className="fixed top-0 w-screen px-8 py-4 bg-gradient-to-b from-black z-50 flex items-center justify-between">
+    <div className="fixed top-0 w-screen px-8 py-4 bg-gradient-to-b from-black z-50 flex items-center justify-between"
+    style={{ backgroundColor: headerBackground, transition: 'background-color 0.5s ease' }}
+    >
       <img className="w-36" src={LOGO_URL} alt="logo" />
       {user && (
         <div className="flex items-center space-x-4">
