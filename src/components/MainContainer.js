@@ -17,7 +17,8 @@ const MainContainer = () => {
 
     return (
         <div className="bg-slate-900">
-            <VideoTitle title={original_title} overview={overview} />
+            {/* Render VideoTitle with only movie title for small screens */}
+            <VideoTitle title={original_title} overview={overview} mobileOnly />
             <VideoBackground movieId={id} />
         </div>
     );

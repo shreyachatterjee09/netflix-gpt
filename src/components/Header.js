@@ -1,6 +1,6 @@
-import React from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { LOGO_URL, SUPPORTED_LANGUAGES } from '../utils/constants';
@@ -72,17 +72,16 @@ const Header = () => {
     };
   }, []);
 
-
   return (
-    <div className="fixed top-0 w-screen px-8 py-4 bg-gradient-to-b from-black z-50 flex items-center justify-between"
-    style={{ backgroundColor: headerBackground, transition: 'background-color 0.5s ease' }}
+    <div className="fixed top-0 w-full px-8 py-4 bg-gradient-to-b from-black z-50 flex flex-col items-center md:flex-row md:justify-between"
+      style={{ backgroundColor: headerBackground, transition: 'background-color 0.5s ease' }}
     >
-      <img className="w-36" src={LOGO_URL} alt="logo" />
+      <img className="w-36 mb-4 md:mb-0" src={LOGO_URL} alt="logo" />
       {user && (
         <div className="flex items-center space-x-4">
           {showGptSearch && (
             <select
-              className="p-2 bg-gray-900 text-white"
+              className="p-2 bg-gray-900 text-white text-sm md:text-base"
               onChange={handleLanguageChange}
             >
               {SUPPORTED_LANGUAGES.map((lang) => (
@@ -93,19 +92,19 @@ const Header = () => {
             </select>
           )}
           <button
-            className="py-2 px-4 bg-purple-800 text-white rounded-lg"
+            className="py-1 px-2 md:py-2 md:px-4 bg-purple-800 text-white rounded-lg text-sm md:text-base"
             onClick={handleGptSearchClick}
           >
             {showGptSearch ? 'Homepage' : 'GPT Search'}
           </button>
           <img
-            className="w-10 h-10 rounded-full object-cover"
+            className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover"
             alt="usericon"
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe8eIW8UaYc7fD5QyVa_Z39U07KJzGel20cRbqsURLvQ&s"
           />
           <button
             onClick={handleSignOut}
-            className="font-bold text-white focus:outline-none"
+            className="font-bold text-white focus:outline-none text-sm md:text-base"
           >
             Sign Out
           </button>
@@ -116,3 +115,5 @@ const Header = () => {
 };
 
 export default Header;
+
+
